@@ -1,0 +1,19 @@
+{
+    "navbar": {
+      "button1": "Bouton 1",
+      "button2": "Bouton 2"
+    },
+
+"sidebar": {
+  "home": "Accueil",
+  "about": "À propos",
+  "services": "Services",
+  "contact": "Contact",
+  "sublink1": "Sous-lien 1",
+  "sublink2": "Sous-lien 2"
+}, 
+"mainPage": {
+    "title": "Bienvenue sur la page principale",
+    "description": "Ceci est la description de la page principale."
+  }
+}
