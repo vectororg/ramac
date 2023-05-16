@@ -1,4 +1,5 @@
-// index.js
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { I18nextProvider } from 'react-i18next';
