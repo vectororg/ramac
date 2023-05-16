@@ -15,5 +15,9 @@
 "mainPage": {
     "title": "Bienvenue sur la page principale",
     "description": "Ceci est la description de la page principale."
+  },
+  "header":{
+    "headline": "Bienvenue dans notre magasin de LAN Party!",
+    "message": "Obtenez tous vos essentiels de jeu pour une expérience de LAN party épique."
   }
 }
