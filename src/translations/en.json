@@ -1,24 +1,32 @@
 {
-  
-    "navbar": {
-        "button1": "Button 1",
-        "button2": "Button 2"
-        
-        },
-      "sidebar": {
-        "home": "Home",
-        "about": "About",
-        "services": "Services",
-        "contact": "Contact",
-        "sublink1": "Sublink 1",
-        "sublink2": "Sublink 2"
-      },
-      "mainPage": {
-        "title": "Welcome to the Main Page",
-        "description": "This is the description of the main page."
-      },
-      "header":{
-        "headline": "Welcome to our LAN Party Store!",
-        "message": "Get all your gaming essentials for an epic LAN party experience."
-      }
-    }
+  "loginSuccessful": "Login successful",
+  "loginFailed": "Login failed",
+  "navbar": {
+    "button1": "Button 1",
+    "button2": "Button 2"
+  },
+  "login": {
+    "login": "Log in"
+  },
+  "loginmodal": {
+    "login": "Log in",
+    "username": "Username",
+    "password": "Password"
+  },
+  "sidebar": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact",
+    "sublink1": "Sublink 1",
+    "sublink2": "Sublink 2"
+  },
+  "mainPage": {
+    "title": "Welcome to the Main Page",
+    "description": "This is the description of the main page."
+  },
+  "header": {
+    "headline": "Welcome to our LAN Party Store!",
+    "message": "Get all your gaming essentials for an epic LAN party experience."
+  }
+}

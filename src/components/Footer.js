@@ -5,7 +5,7 @@ export default function Footer() {
 
     <footer className='footer'>
       <div className='container-fluid-footer'>
-        <span>Hei Me lanitetaaa</span>
+        <span>Hei Me lanitetaaa!</span>
         <br></br>
         <span>© 2023 Vectorama.fi</span>
       </div>

@@ -131,4 +131,59 @@ footer .container {
   transform: translateX(-50%);
   z-index: 1;
 }
+.login-window-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-window {
+  background-color: white;
+ 
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.login-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-header h2 {
+  margin: 0;
+}
+
+.login-body input {
+  margin-bottom: 20px;
+}
 
