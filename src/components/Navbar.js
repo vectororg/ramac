@@ -40,6 +40,9 @@ const Navbar = () => {
         </Link>
       </div>
       <Nav>
+      <Nav.Item>
+          <Nav.Link href="/">{t('navbar.vectorama')}</Nav.Link>
+        </Nav.Item>
         <Nav.Item>
           <Nav.Link href="/hinnat">{t('navbar.hinnat')}</Nav.Link>
         </Nav.Item>

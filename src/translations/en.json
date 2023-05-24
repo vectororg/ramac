@@ -2,6 +2,7 @@
   "loginSuccessful": "Login successful",
   "loginFailed": "Login failed",
   "navbar": {
+    "vectorama": "Vectorama",
     "hinnat": "Prices",
     "info": "Info",
     "tili": "Account"

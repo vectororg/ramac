@@ -2,6 +2,7 @@
   "loginSuccessful": "Onnistunut kirjautuminen",
   "loginFailed": "Kirjautuminen epäonnistui",
     "navbar": {
+      "vectorama": "Vectorama",
       "hinnat": "Hinnat",
       "info": "Info",
       "tili": "Tili"
