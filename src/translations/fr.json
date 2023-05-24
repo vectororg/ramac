@@ -2,8 +2,9 @@
   "loginSuccessful": "Connexion réussie",
   "loginFailed": "Échec de la connexion",
     "navbar": {
-      "button1": "Bouton 1",
-      "button2": "Bouton 2"
+      "hinnat": "Prix",
+      "info": "Info",
+      "tili": "Compte"
     },
     "login": {
       "login": "connexion"
