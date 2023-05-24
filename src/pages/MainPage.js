@@ -2,25 +2,23 @@ import React from 'react';
 import '../App.css';
 import { useTranslation } from 'react-i18next';
 import Navbar from '../components/Navbar';
-import Sidebar from '../components/Sidebar';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import ShopItemGrid from '../components/ShopItemGrid'; // Import the ShopItemGrid component
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
 
 const MainPage = () => {
   const { t } = useTranslation();
 
-  const items = [
-    { id: 1, name: "Item 1", price: 10 },
-    { id: 2, name: "Item 2", price: 20 },
-    { id: 3, name: "Item 3", price: 30 },
-  ];
+
 
   return (
     <div>
       <Header />
       <Navbar />
-      <Sidebar />
+      
 
       <div className="main-container">
         {/* Other components or navigation */}
@@ -30,8 +28,20 @@ const MainPage = () => {
         </div>
 
         {/* Include the ShopItemGrid component */}
-        <ShopItemGrid items={items} />
+        
+        <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Body>
+        <Card.Title>Card Title</Card.Title>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
+        <Button variant="primary">Go somewhere</Button>
+      </Card.Body>
+    </Card>
       </div>
+      
       <Footer />
     </div>
   );

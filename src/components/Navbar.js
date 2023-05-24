@@ -12,8 +12,7 @@ const Navbar = () => {
     <nav className="navbar">
       <ul>
         <LanguageSwitcher />
-        <li><a href="#">{t('navbar.button1')}</a></li>
-        <li><a href="#">{t('navbar.button2')}</a></li>
+     
         <li className='nav-item'>
               <LoginButton />
           </li>
