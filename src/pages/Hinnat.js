@@ -7,7 +7,7 @@ import Header from '../components/Header';
 
 
 
-const MainPage = () => {
+const Hinnat = () => {
   const { t } = useTranslation();
 
 
@@ -19,15 +19,7 @@ const MainPage = () => {
       
 
       <div className="main-container">
-        {/* Other components or navigation */}
-        <div>
-          <h1>{t('mainPage.title')}</h1>
-          <p>{t('mainPage.description')}</p>
-        </div>
-
-        {/* Include the ShopItemGrid component */}
-        
-
+    Täällä on Hinnat
       </div>
       
       <Footer />
@@ -35,4 +27,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default Hinnat;

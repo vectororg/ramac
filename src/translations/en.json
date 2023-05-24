@@ -2,8 +2,9 @@
   "loginSuccessful": "Login successful",
   "loginFailed": "Login failed",
   "navbar": {
-    "button1": "Button 1",
-    "button2": "Button 2"
+    "hinnat": "Prices",
+    "info": "Info",
+    "tili": "Account"
   },
   "login": {
     "login": "Log in"
@@ -13,14 +14,7 @@
     "username": "Username",
     "password": "Password"
   },
-  "sidebar": {
-    "home": "Home",
-    "about": "About",
-    "services": "Services",
-    "contact": "Contact",
-    "sublink1": "Sublink 1",
-    "sublink2": "Sublink 2"
-  },
+
   "mainPage": {
     "title": "Welcome to the Main Page",
     "description": "This is the description of the main page."
