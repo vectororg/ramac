@@ -1,0 +1,26 @@
+{
+  "loginSuccessful": "Onnistunut kirjautuminen",
+  "loginFailed": "Kirjautuminen epäonnistui",
+    "navbar": {
+      "hinnat": "Hinnat",
+      "info": "Info",
+      "tili": "Tili"
+    },
+    "login": {
+      "login": "Kirjaudu"
+      
+      },
+      "loginmodal": {
+        "login": "Kirjaudu",
+        "username": "Käyttäjänimi",
+        "password": "Salasana"
+        },
+      
+"mainPage": {
+    "title": "Tervetuloa LAN Party kauppaamme!",
+    "description": "Hanki kaikki LAN Party tarvikkeet täältä!"
+  },
+  "header":{
+ 
+  }
+}

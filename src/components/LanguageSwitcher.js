@@ -4,11 +4,11 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 
 const LanguageSwitcher = () => {
-  const [radioValue, setRadioValue] = useState('en');
+  const [radioValue, setRadioValue] = useState('fi');
 
   const radios = [
+    { name: 'Suomi', value: 'fi' },
     { name: 'English', value: 'en' },
-    { name: 'French', value: 'fr' },
   ];
 
   const { i18n } = useTranslation();
