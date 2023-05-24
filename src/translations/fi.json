@@ -7,7 +7,8 @@
       "tili": "Tili"
     },
     "login": {
-      "login": "Kirjaudu"
+      "login": "Kirjaudu",
+      "logout": "Kirjaudu ulos"
       
       },
       "loginmodal": {
@@ -18,7 +19,7 @@
       
 "mainPage": {
     "title": "Tervetuloa LAN Party kauppaamme!",
-    "description": "Hanki kaikki LAN Party tarvikkeet täältä!"
+    "description": "Meillä on ihan hyper super lanit kohta!"
   },
   "header":{
  

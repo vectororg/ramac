@@ -1,34 +1,29 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Form, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
-function LoginWindow({ onClose }) {
+function LoginWindow({ onClose, onLogin }) {
   const [formData, setFormData] = useState({ name: "", password: "" });
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    const form = event.target;
-    const formData = new FormData(form);
+    // Simuloi onnistunut kirjautuminen
+    if (formData.name === "käyttäjänimi" && formData.password === "") {
+      console.log("Login successful");
+      onClose();
+      onLogin(); // Kutsu onLogin-funktiota kirjautumisen yhteydessä
 
-    fetch("https://www.students.oamk.fi/~c2pima00/login.php", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          // handle successful login
-          alert(t("loginSuccessful"));
-          console.log("Login successful");
-        } else {
-          // handle login error
-          alert(t("loginFailed"));
-          console.log(data.error);
-        }
-      })
-      .catch((error) => console.error(error));
+      setTimeout(() => {
+        navigate("/tili");
+      }, 500);
+    } else {
+      alert(t("loginFailed"));
+      console.log("Login failed");
+    }
   };
 
   return (

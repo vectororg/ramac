@@ -4,6 +4,7 @@ import MainPage from './pages/MainPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import TestPage from './pages/TestPage';
 import LoginButton from './components/LoginButton';
+import LogoutButton from './components/LogoutButton';
 import LoginModal from './components/LoginModal';
 import Hinnat from './pages/Hinnat';
 import Info from './pages/Info';
@@ -19,6 +20,7 @@ function App() {
         <Route path='info' element={<Info />} />
         <Route path='tili' element={<Tili />} />
         <Route path='login' element={<LoginButton />} />
+        <Route path='logout' element={<LogoutButton />} />
         <Route path='loginmodal' element={<LoginModal />} />
         <Route path='/' element={<MainPage />} />
         <Route path='test' element={<TestPage />} />
