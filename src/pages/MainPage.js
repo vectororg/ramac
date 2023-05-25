@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+
 import ProductCard from '../components/ProductCard';
 import { Container, Row, Col } from 'react-bootstrap';
 
