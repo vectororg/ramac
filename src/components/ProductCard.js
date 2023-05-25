@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Card, Button, Image, Modal } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 const ProductCard = ({ product, onAddToCart }) => {
   const [quantity, setQuantity] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
+  const { t } = useTranslation();
 
   const handleIncrement = () => {
     setQuantity(quantity + 1);
@@ -15,10 +17,8 @@ const ProductCard = ({ product, onAddToCart }) => {
     }
   };
 
-  const handleCardClick = (event) => {
-    if (!event.target.classList.contains('decrement') && !event.target.classList.contains('increment') && !event.target.classList.contains('add-to-cart')) {
-      setShowPopup(true);
-    }
+  const handleCardClick = () => {
+    setShowPopup(true);
   };
 
   const handlePopupClose = () => {
@@ -35,14 +35,9 @@ const ProductCard = ({ product, onAddToCart }) => {
     margin: '10px',
     cursor: 'pointer',
     width: '300px',
-    height: '400px',
-    overflow: 'hidden',
+    height: 'auto', // Muuta korkeus automaattiseksi
     textOverflow: 'ellipsis',
-    
   };
-  
-  
-  
 
   const truncateText = (text, maxLength) => {
     if (text.length <= maxLength) {
@@ -59,7 +54,7 @@ const ProductCard = ({ product, onAddToCart }) => {
           <Card.Title style={{ fontSize: '16px' }}>{truncateText(product.name, 20)}</Card.Title>
           <Card.Text style={{ fontSize: '14px' }}>{truncateText(product.description, 300)}</Card.Text>
         </Card.Body>
-        <Card.Footer>
+        <Card.Footer style={{ flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <Button className="decrement" variant="outline-dark" onClick={handleDecrement}>
               -
@@ -69,7 +64,7 @@ const ProductCard = ({ product, onAddToCart }) => {
               +
             </Button>
             <Button className="add-to-cart" variant="dark" onClick={addToCart}>
-              Lisää ostoskoriin
+              {t('productCard.addToCartButton')}
             </Button>
           </div>
         </Card.Footer>
@@ -86,7 +81,7 @@ const ProductCard = ({ product, onAddToCart }) => {
             <Card.Text>{product.description}</Card.Text>
           </Card.Body>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer style={{ flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <Button className="decrement" variant="outline-dark" onClick={handleDecrement}>
               -
@@ -96,7 +91,7 @@ const ProductCard = ({ product, onAddToCart }) => {
               +
             </Button>
             <Button className="add-to-cart" variant="dark" onClick={addToCart}>
-              Lisää ostoskoriin
+              {t('productCard.addToCartButton')}
             </Button>
           </div>
         </Modal.Footer>

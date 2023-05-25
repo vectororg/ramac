@@ -1,28 +1,59 @@
 {
   "loginSuccessful": "Onnistunut kirjautuminen",
   "loginFailed": "Kirjautuminen epäonnistui",
-    "navbar": {
-      "vectorama": "Vectorama",
-      "hinnat": "Hinnat",
-      "info": "Info",
-      "tili": "Oma Tili"
-    },
-    "login": {
-      "login": "Kirjaudu",
-      "logout": "Kirjaudu ulos"
-      
-      },
-      "loginmodal": {
-        "login": "Kirjaudu",
-        "username": "Käyttäjänimi",
-        "password": "Salasana"
-        },
-      
-"mainPage": {
+  "navbar": {
+    "vectorama": "Vectorama",
+    "hinnat": "Hinnat",
+    "info": "Info",
+    "tili": "Oma Tili"
+  },
+  "login": {
+    "login": "Kirjaudu",
+    "logout": "Kirjaudu ulos"
+  },
+  "loginmodal": {
+    "login": "Kirjaudu",
+    "username": "Käyttäjänimi",
+    "password": "Salasana"
+  },
+  "userProfile": {
+    "title": "Käyttäjäprofiili",
+    "nickLabel": "Nick:",
+    "firstNameLabel": "Etunimi:",
+    "lastNameLabel": "Sukunimi:",
+    "genderLabel": "Sukupuoli:",
+    "genderPlaceholder": "Valitse sukupuoli",
+    "genderMale": "Mies",
+    "genderFemale": "Nainen",
+    "genderOther": "Muu",
+    "phoneNumberLabel": "Puhelinnumero:",
+    "birthdateLabel": "Syntymäaika:",
+    "addressLabel": "Lähiosoite:",
+    "postalCodeLabel": "Postinumero:",
+    "saveButton": "Tallenna"
+  },
+  "mainPage": {
     "title": "Tervetuloa LAN Party kauppaamme!",
     "description": "Meillä on ihan hyper super lanit kohta!"
   },
-  "header":{
+  "changePassword": {
+    "title": "Vaihda salasana",
+    "currentPasswordLabel": "Nykyinen salasana",
+    "newPasswordLabel": "Uusi salasana",
+    "confirmPasswordLabel": "Vahvista salasana",
+    "submitButton": "Lähetä"
+  },
+  "addProfilePicture": {
+    "title": "Lisää profiilikuva",
+    "retakeButton": "Ota uusi kuva",
+    "captureButton": "Ota kuva",
+    "previewButton": "Esikatsele",
+    "fileUploadLabel": "Lataa kuva"
+  },
+  "productCard": {
+    "addToCartButton": "Lisää ostoskoriin"
+  },
+  "header": {
  
   }
 }

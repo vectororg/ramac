@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 const UserProfile = () => {
+  const { t } = useTranslation();
   const [nick, setNick] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -14,9 +16,9 @@ const UserProfile = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    // Tässä voit käsitellä lomakkeen tiedot, esim. lähettää ne palvelimelle
+    // Here you can handle the form data, e.g., send it to the server
 
-    // Tyhjennä lomake
+    // Clear the form
     setNick('');
     setFirstName('');
     setLastName('');
@@ -31,10 +33,10 @@ const UserProfile = () => {
     <Container>
       <Row className="justify-content-center">
         <Col xs={12} sm={8} md={6}>
-          <h2>Käyttäjäprofiili</h2>
+          <h2>{t('userProfile.title')}</h2>
           <Form onSubmit={handleFormSubmit}>
             <Form.Group controlId="nick">
-              <Form.Label>Nick:</Form.Label>
+              <Form.Label>{t('userProfile.nickLabel')}</Form.Label>
               <Form.Control
                 type="text"
                 value={nick}
@@ -42,7 +44,7 @@ const UserProfile = () => {
               />
             </Form.Group>
             <Form.Group controlId="firstName">
-              <Form.Label>Etunimi:</Form.Label>
+              <Form.Label>{t('userProfile.firstNameLabel')}</Form.Label>
               <Form.Control
                 type="text"
                 value={firstName}
@@ -50,7 +52,7 @@ const UserProfile = () => {
               />
             </Form.Group>
             <Form.Group controlId="lastName">
-              <Form.Label>Sukunimi:</Form.Label>
+              <Form.Label>{t('userProfile.lastNameLabel')}</Form.Label>
               <Form.Control
                 type="text"
                 value={lastName}
@@ -58,20 +60,20 @@ const UserProfile = () => {
               />
             </Form.Group>
             <Form.Group controlId="gender">
-              <Form.Label>Sukupuoli:</Form.Label>
+              <Form.Label>{t('userProfile.genderLabel')}</Form.Label>
               <Form.Control
                 as="select"
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
               >
-                <option value="">Valitse sukupuoli</option>
-                <option value="male">Mies</option>
-                <option value="female">Nainen</option>
-                <option value="other">Muu</option>
+                <option value="">{t('userProfile.genderPlaceholder')}</option>
+                <option value="male">{t('userProfile.genderMale')}</option>
+                <option value="female">{t('userProfile.genderFemale')}</option>
+                <option value="other">{t('userProfile.genderOther')}</option>
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="phoneNumber">
-              <Form.Label>Puhelinnumero:</Form.Label>
+              <Form.Label>{t('userProfile.phoneNumberLabel')}</Form.Label>
               <Form.Control
                 type="text"
                 value={phoneNumber}
@@ -79,7 +81,7 @@ const UserProfile = () => {
               />
             </Form.Group>
             <Form.Group controlId="birthdate">
-              <Form.Label>Syntymäaika:</Form.Label>
+              <Form.Label>{t('userProfile.birthdateLabel')}</Form.Label>
               <Form.Control
                 type="text"
                 value={birthdate}
@@ -87,7 +89,7 @@ const UserProfile = () => {
               />
             </Form.Group>
             <Form.Group controlId="address">
-              <Form.Label>Lähiosoite:</Form.Label>
+              <Form.Label>{t('userProfile.addressLabel')}</Form.Label>
               <Form.Control
                 type="text"
                 value={address}
@@ -95,7 +97,7 @@ const UserProfile = () => {
               />
             </Form.Group>
             <Form.Group controlId="postalCode">
-              <Form.Label>Postinumero:</Form.Label>
+              <Form.Label>{t('userProfile.postalCodeLabel')}</Form.Label>
               <Form.Control
                 type="text"
                 value={postalCode}
@@ -103,7 +105,7 @@ const UserProfile = () => {
               />
             </Form.Group>
             <Button variant="primary" type="submit">
-              Tallenna
+              {t('userProfile.saveButton')}
             </Button>
           </Form>
         </Col>

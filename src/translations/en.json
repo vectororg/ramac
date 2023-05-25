@@ -16,10 +16,42 @@
     "username": "Username",
     "password": "Password"
   },
-
+  "userProfile": {
+    "title": "User Profile",
+    "nickLabel": "Nick:",
+    "firstNameLabel": "First Name:",
+    "lastNameLabel": "Last Name:",
+    "genderLabel": "Gender:",
+    "genderPlaceholder": "Select gender",
+    "genderMale": "Male",
+    "genderFemale": "Female",
+    "genderOther": "Other",
+    "phoneNumberLabel": "Phone Number:",
+    "birthdateLabel": "Birthdate:",
+    "addressLabel": "Address:",
+    "postalCodeLabel": "Postal Code:",
+    "saveButton": "Save"
+  },
   "mainPage": {
     "title": "Welcome to the Main Page",
     "description": "This is the description of the main page."
+  },
+  "changePassword": {
+    "title": "Change Password",
+    "currentPasswordLabel": "Current Password",
+    "newPasswordLabel": "New Password",
+    "confirmPasswordLabel": "Confirm Password",
+    "submitButton": "Submit"
+  },
+  "addProfilePicture": {
+    "title": "Add Profile Picture",
+    "retakeButton": "Take New Picture",
+    "captureButton": "Capture",
+    "previewButton": "Preview",
+    "fileUploadLabel": "Upload Image"
+  },
+  "productCard": {
+    "addToCartButton": "Add to Cart"
   },
   "header": {
   

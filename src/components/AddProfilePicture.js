@@ -1,11 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 const AddProfilePicture = () => {
   const [imageSrc, setImageSrc] = useState(null);
   const [isPreviewing, setIsPreviewing] = useState(false);
   const videoRef = useRef(null);
   const mediaStreamRef = useRef(null);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     startCamera();
@@ -80,12 +83,12 @@ const AddProfilePicture = () => {
 
   return (
     <div>
-      <h2>Lisää profiilikuva</h2>
+      <h2>{t('addProfilePicture.title')}</h2>
       {imageSrc ? (
         <div style={{ marginBottom: '20px' }}>
-          <img src={imageSrc} alt="Profile" style={{ maxWidth: '100%' }} />
+          <img src={imageSrc} alt={t('addProfilePicture.profileAltText')} style={{ maxWidth: '100%' }} />
           <Button variant="secondary" onClick={handleRetake}>
-            Uusi kuva
+            {t('addProfilePicture.retakeButton')}
           </Button>
         </div>
       ) : (
@@ -94,14 +97,14 @@ const AddProfilePicture = () => {
             <div>
               <video ref={videoRef} style={{ display: 'block' }}></video>
               <Button variant="primary" onClick={handleCapture}>
-                Ota kuva
+                {t('addProfilePicture.captureButton')}
               </Button>
             </div>
           ) : (
             <div>
               <video ref={videoRef} style={{ display: 'none' }}></video>
               <Button variant="primary" onClick={handlePreview}>
-                Esikatsele
+                {t('addProfilePicture.previewButton')}
               </Button>
               <br />
               <br />

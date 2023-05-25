@@ -1,6 +1,5 @@
 import React from 'react';
 import '../App.css';
-import { useTranslation } from 'react-i18next';
 import { Container, Row, Col } from 'react-bootstrap';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -12,7 +11,7 @@ import ChangePassword from '../components/PasswordChange';
 
 
 const Tili = () => {
-  const { t } = useTranslation();
+
 
 
   return (

@@ -138,3 +138,10 @@ footer .container {
 .cart a {
   text-decoration: none;
 }
+.product-card-wrapper {
+  cursor: pointer;
+}
+
+.product-card-wrapper:hover .product-card {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
