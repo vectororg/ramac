@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import kivakuva from '../img/kivakuva.webp';
 import ProductCard from '../components/ProductCard';
+import MerchCard from '../components/MerchCard';
 import { Container, Row, Col } from 'react-bootstrap';
 
 const MainPage = () => {
@@ -50,6 +51,12 @@ const MainPage = () => {
     // Voit toteuttaa tässä toiminnallisuuden tuotteen lisäämiseksi ostoskoriin
   };
 
+  const handleAddToCartWithVariants = (productName, quantity, variant) => {
+    console.log(`Lisää ${quantity} kpl tuotetta ${productName} ostoskoriin`);
+    console.log('Valittu variantti:', variant);
+    // Voit toteuttaa tässä toiminnallisuuden tuotteen lisäämiseksi ostoskoriin varianttien kanssa
+  };
+
   return (
     <div>
       <Header />
@@ -66,10 +73,19 @@ const MainPage = () => {
           <Row>
             {products.map((product, index) => (
               <Col key={index} xs={12} md={6} lg={4}>
-                <ProductCard
-                  product={product}
-                  onAddToCart={(name, quantity) => handleAddToCart(name, quantity)}
-                />
+                {index % 2 === 0 ? (
+                  <ProductCard
+                    product={product}
+                    onAddToCart={(name, quantity) => handleAddToCart(name, quantity)}
+                  />
+                ) : (
+                  <MerchCard
+                    product={product}
+                    onAddToCart={(name, quantity, variant) =>
+                      handleAddToCartWithVariants(name, quantity, variant)
+                    }
+                  />
+                )}
               </Col>
             ))}
           </Row>

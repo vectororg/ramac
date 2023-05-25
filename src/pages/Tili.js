@@ -7,6 +7,7 @@ import Header from '../components/Header';
 import Profile from '../components/Profile';
 import AddProfilePicture from '../components/AddProfilePicture';
 import ChangePassword from '../components/PasswordChange';
+import Tilaukseni from '../components/Tilaukseni';
 
 
 
@@ -30,6 +31,7 @@ const Tili = () => {
         </Row>
       
       </Container>
+      
       <Footer />
     </div>
   );

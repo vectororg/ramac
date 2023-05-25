@@ -40,7 +40,7 @@ const Navbar = () => {
         </Link>
       </div>
       <Nav>
-      <Nav.Item>
+        <Nav.Item>
           <Nav.Link href="/">{t('navbar.vectorama')}</Nav.Link>
         </Nav.Item>
         <Nav.Item>
@@ -58,16 +58,18 @@ const Navbar = () => {
       <ul>
         <LanguageSwitcher />
         {loggedIn ? (
-          <li className='nav-item'>
+          <li className="nav-item">
             <LogoutButton onLogout={handleLogout} />
           </li>
         ) : (
-          <li className='nav-item'>
+          <li className="nav-item">
             <LoginButton onLogin={handleLogin} />
           </li>
         )}
-        <li className='cart'>
-          <img src={cart} alt="Cart" />
+        <li className="cart">
+          <Link to="/order">
+            <img src={cart} alt="Cart" />
+          </Link>
         </li>
       </ul>
     </nav>

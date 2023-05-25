@@ -9,12 +9,14 @@ import LoginModal from './components/LoginModal';
 import Hinnat from './pages/Hinnat';
 import Info from './pages/Info';
 import Tili from './pages/Tili';
+import Order from './pages/Order';
 
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='order' element={<Order />} />
         <Route path='mainpage' element={<MainPage />} />
         <Route path='hinnat' element={<Hinnat />} />
         <Route path='info' element={<Info />} />
