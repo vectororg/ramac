@@ -7,6 +7,7 @@ import logo from '../img/logo.png';
 import cart from '../img/cart.png';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
+import LoginButtonAndModal from './LoginButtonAndModal';
 
 const Navbar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -55,7 +56,7 @@ const Navbar = () => {
           </Nav.Item>
         )}
       </Nav>
-      <ul>
+      <ul><LoginButtonAndModal />
         <LanguageSwitcher />
         {loggedIn ? (
           <li className="nav-item">
