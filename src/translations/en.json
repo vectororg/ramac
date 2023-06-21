@@ -14,7 +14,8 @@
   "loginmodal": {
     "login": "Log in",
     "username": "Username",
-    "password": "Password"
+    "password": "Password",
+    "close": "Close"
   },
   "userProfile": {
     "title": "User Profile",

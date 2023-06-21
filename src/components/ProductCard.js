@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Button, Image, Form } from 'react-bootstrap';
+import { Card, Button, Image, Form, Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 const ProductCard = ({ product, onAddToCart }) => {
@@ -7,6 +7,7 @@ const ProductCard = ({ product, onAddToCart }) => {
   const [selectedType, setSelectedType] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
   const { t } = useTranslation();
 
   const handleIncrement = () => {
@@ -31,6 +32,14 @@ const ProductCard = ({ product, onAddToCart }) => {
     setSelectedSize(event.target.value);
   };
 
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   const addToCart = () => {
     const variant = {
       type: selectedType,
@@ -43,6 +52,7 @@ const ProductCard = ({ product, onAddToCart }) => {
     setSelectedType('');
     setSelectedColor('');
     setSelectedSize('');
+    closeModal();
   };
 
   const cardStyle = {
@@ -62,11 +72,22 @@ const ProductCard = ({ product, onAddToCart }) => {
 
   return (
     <div>
-      <Card style={cardStyle}>
+      <Card style={cardStyle} onClick={openModal}>
         <Card.Img variant="top" src={product.image} alt={product.name} />
         <Card.Body>
           <Card.Title style={{ fontSize: '16px' }}>{truncateText(product.name, 20)}</Card.Title>
           <Card.Text style={{ fontSize: '14px' }}>{truncateText(product.description, 300)}</Card.Text>
+        </Card.Body>
+      </Card>
+
+      <Modal show={modalOpen} onHide={closeModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>{product.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Image src={product.image} alt={product.name} fluid />
+          <p>{product.description}</p>
+
           <Form>
             <Form.Group controlId="typeSelect">
               <Form.Label>Type</Form.Label>
@@ -98,8 +119,8 @@ const ProductCard = ({ product, onAddToCart }) => {
               </Form.Control>
             </Form.Group>
           </Form>
-        </Card.Body>
-        <Card.Footer style={{ flexWrap: 'wrap' }}>
+        </Modal.Body>
+        <Modal.Footer>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <Button className="decrement" variant="outline-dark" onClick={handleDecrement}>
               -
@@ -112,8 +133,8 @@ const ProductCard = ({ product, onAddToCart }) => {
               {t('productCard.addToCartButton')}
             </Button>
           </div>
-        </Card.Footer>
-      </Card>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

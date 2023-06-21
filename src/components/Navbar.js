@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
-import LoginButton from '../components/LoginButton';
 import LogoutButton from '../components/LogoutButton';
 import logo from '../img/logo.png';
 import cart from '../img/cart.png';
@@ -56,7 +55,7 @@ const Navbar = () => {
           </Nav.Item>
         )}
       </Nav>
-      <ul><LoginButtonAndModal />
+      <ul>
         <LanguageSwitcher />
         {loggedIn ? (
           <li className="nav-item">
@@ -64,7 +63,7 @@ const Navbar = () => {
           </li>
         ) : (
           <li className="nav-item">
-            <LoginButton onLogin={handleLogin} />
+            <LoginButtonAndModal onLogin={handleLogin} />
           </li>
         )}
         <li className="cart">

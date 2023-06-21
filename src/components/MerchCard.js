@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Card, Button, Image } from 'react-bootstrap';
+import { Card, Button, Image, Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 const ProductCard = ({ product, onAddToCart }) => {
   const [quantity, setQuantity] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
   const { t } = useTranslation();
 
   const handleIncrement = () => {
@@ -14,6 +15,14 @@ const ProductCard = ({ product, onAddToCart }) => {
     if (quantity > 0) {
       setQuantity(quantity - 1);
     }
+  };
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   const addToCart = () => {
@@ -38,13 +47,23 @@ const ProductCard = ({ product, onAddToCart }) => {
 
   return (
     <div>
-      <Card style={cardStyle}>
+      <Card style={cardStyle} onClick={openModal}>
         <Card.Img variant="top" src={product.image} alt={product.name} />
         <Card.Body>
           <Card.Title style={{ fontSize: '16px' }}>{truncateText(product.name, 20)}</Card.Title>
           <Card.Text style={{ fontSize: '14px' }}>{truncateText(product.description, 300)}</Card.Text>
         </Card.Body>
-        <Card.Footer style={{ flexWrap: 'wrap' }}>
+      </Card>
+
+      <Modal show={modalOpen} onHide={closeModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>{product.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Image src={product.image} alt={product.name} fluid />
+          <p>{product.description}</p>
+        </Modal.Body>
+        <Modal.Footer>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <Button className="decrement" variant="outline-dark" onClick={handleDecrement}>
               -
@@ -57,8 +76,8 @@ const ProductCard = ({ product, onAddToCart }) => {
               {t('productCard.addToCartButton')}
             </Button>
           </div>
-        </Card.Footer>
-      </Card>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

@@ -14,7 +14,8 @@
   "loginmodal": {
     "login": "Kirjaudu",
     "username": "Käyttäjänimi",
-    "password": "Salasana"
+    "password": "Salasana",
+    "close": "Sulje"
   },
   "userProfile": {
     "title": "Käyttäjäprofiili",

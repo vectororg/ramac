@@ -3,11 +3,10 @@ import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-function LoginButtonAndModal({ onClose, onLogin }) {
+function LoginButtonAndModal({ onLogin }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -23,7 +22,6 @@ function LoginButtonAndModal({ onClose, onLogin }) {
     // Simuloi onnistunut kirjautuminen
     if (formData.name === "käyttäjänimi" && formData.password === "") {
       console.log("Login successful");
-      onClose();
       onLogin(); // Kutsu onLogin-funktiota kirjautumisen yhteydessä
 
       setTimeout(() => {
@@ -38,7 +36,7 @@ function LoginButtonAndModal({ onClose, onLogin }) {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-      {t('login.login')}
+        {t('login.login')}
       </Button>
 
       <Modal
@@ -51,8 +49,7 @@ function LoginButtonAndModal({ onClose, onLogin }) {
           <Modal.Title>{t("loginmodal.login")}</Modal.Title>
         </Modal.Header>
         <Form onSubmit={handleFormSubmit}>
-        <Modal.Body>
-       
+          <Modal.Body>
             <Form.Group controlId="name">
               <Form.Label>{t("loginmodal.username")}:</Form.Label>
               <Form.Control
@@ -73,18 +70,15 @@ function LoginButtonAndModal({ onClose, onLogin }) {
                 }
               />
             </Form.Group>
-            
-          
-        </Modal.Body>
-        <Modal.Footer>
+          </Modal.Body>
+          <Modal.Footer>
             <Button variant="dark" type="submit">
               {t("loginmodal.login")}
             </Button>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button> 
-          {/* <Button variant="primary">Understood</Button>*/}
-        </Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+            {t("loginmodal.close")}
+            </Button>
+          </Modal.Footer>
         </Form>
       </Modal>
     </>
