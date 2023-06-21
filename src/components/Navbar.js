@@ -7,10 +7,12 @@ import cart from '../img/cart.png';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 import LoginButtonAndModal from './LoginButtonAndModal';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Tarkista tallennettu kirjautumistila
@@ -30,6 +32,7 @@ const Navbar = () => {
     setLoggedIn(false);
     // Poista tallennettu kirjautumistila
     localStorage.removeItem('loggedIn');
+    navigate('/'); // Ohjaa käyttäjä takaisin Etusivulle
   };
 
   return (
@@ -59,7 +62,7 @@ const Navbar = () => {
         <LanguageSwitcher />
         {loggedIn ? (
           <li className="nav-item">
-            <LogoutButton onLogout={handleLogout} />
+           <LogoutButton onLogout={handleLogout} navigate={navigate} />
           </li>
         ) : (
           <li className="nav-item">
