@@ -2,9 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
+
 const AddProfilePicture = () => {
   const [imageSrc, setImageSrc] = useState(null);
   const [isPreviewing, setIsPreviewing] = useState(false);
+  const [isImageSaved, setIsImageSaved] = useState(false);
   const videoRef = useRef(null);
   const mediaStreamRef = useRef(null);
 
@@ -54,6 +56,7 @@ const AddProfilePicture = () => {
       const capturedImageSrc = canvas.toDataURL('image/png');
       setImageSrc(capturedImageSrc);
       setIsPreviewing(false);
+      setIsImageSaved(false);
     } catch (error) {
       console.error('Error capturing image:', error);
     }
@@ -66,6 +69,7 @@ const AddProfilePicture = () => {
       const uploadedImageSrc = reader.result;
       setImageSrc(uploadedImageSrc);
       setIsPreviewing(false);
+      setIsImageSaved(false);
     };
     reader.readAsDataURL(file);
   };
@@ -74,11 +78,35 @@ const AddProfilePicture = () => {
     stopCamera();
     startCamera();
     setIsPreviewing(true);
+    setIsImageSaved(false);
   };
 
   const handleRetake = () => {
     setImageSrc(null);
     setIsPreviewing(false);
+    setIsImageSaved(false);
+  };
+
+  const saveImage = () => {
+    // Tässä voit toteuttaa logiikan tallentaaksesi kuvan tietokantaan
+    // esimerkiksi lähettämällä sen palvelimelle HTTP-pyynnön avulla.
+    // Voit käyttää esimerkiksi Axios-kirjastoa.
+
+    // Esimerkki Axios-pyynnöstä:
+    // axios.post('/tallennuspolku', { imageSrc })
+    //   .then(response => {
+    //     // Käsittely tallennuksen onnistuessa
+    //     console.log('Kuva tallennettu tietokantaan');
+    //     setIsImageSaved(true);
+    //   })
+    //   .catch(error => {
+    //     // Käsittely tallennuksen epäonnistuessa
+    //     console.error('Virhe tallentaessa kuvaa:', error);
+    //   });
+
+    // Käytetään tässä vaiheessa setIsImageSaved(true) simuloidaksemme tallennusprosessia
+    setIsImageSaved(true);
+    console.log('Kuva tallennettu tietokantaan');
   };
 
   return (
@@ -90,6 +118,11 @@ const AddProfilePicture = () => {
           <Button variant="secondary" onClick={handleRetake}>
             {t('addProfilePicture.retakeButton')}
           </Button>
+          {!isImageSaved && (
+            <Button variant="success" onClick={saveImage}>
+              Tallenna
+            </Button>
+          )}
         </div>
       ) : (
         <div style={{ marginBottom: '20px' }}>
@@ -99,6 +132,11 @@ const AddProfilePicture = () => {
               <Button variant="primary" onClick={handleCapture}>
                 {t('addProfilePicture.captureButton')}
               </Button>
+              {!isImageSaved && (
+                <Button variant="success" onClick={saveImage}>
+                  Tallenna
+                </Button>
+              )}
             </div>
           ) : (
             <div>
@@ -109,6 +147,11 @@ const AddProfilePicture = () => {
               <br />
               <br />
               <input type="file" accept="image/*" onChange={handleFileUpload} />
+              {!isImageSaved && (
+                <Button variant="success" onClick={saveImage}>
+                  Tallenna
+                </Button>
+              )}
             </div>
           )}
         </div>
