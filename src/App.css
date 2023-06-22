@@ -145,3 +145,7 @@ footer .container {
 .product-card-wrapper:hover .product-card {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
+.box {
+  border: 1px solid black;
+  padding: 5px;
+}

@@ -8,12 +8,14 @@ import Hinnat from './pages/Hinnat';
 import Info from './pages/Info';
 import Tili from './pages/Tili';
 import Order from './pages/Order';
+import ComputerPlaces from './pages/ComputerPlaces';
 
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='computerplaces' element={<ComputerPlaces />} /> {/* <ComputerPlaces /> */}
         <Route path='order' element={<Order />} />
         <Route path='mainpage' element={<MainPage />} />
         <Route path='hinnat' element={<Hinnat />} />
