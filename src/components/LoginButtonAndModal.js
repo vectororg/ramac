@@ -18,8 +18,6 @@ function LoginButtonAndModal({ onLogin }) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-
       const loginString = `${formData.name}:${formData.password}`;
       const base64LoginString = btoa(loginString);
       fetch('https://nr.vector.fi:1891/ramac/rest/v1/login', {
@@ -31,7 +29,8 @@ function LoginButtonAndModal({ onLogin }) {
       })
       .then(response => response.json())
       .then(data => {
-        
+        localStorage.setItem("user", JSON.stringify(data))
+        localStorage.setItem("authorization", base64LoginString)
 
         console.log('Login successful');
         onLogin(); // Kutsu onLogin-funktiota kirjautumisen yhteydessä
