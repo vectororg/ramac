@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
@@ -13,6 +13,20 @@ const UserProfile = () => {
   const [address, setAddress] = useState('');
   const [postalCode, setPostalCode] = useState('');
 
+  
+
+  useEffect(() => {
+    let user = JSON.parse(localStorage.getItem('user'));
+    
+    setNick(user.nick);
+    setFirstName(user.nick);
+    setLastName(user.lastNames)
+    setPhoneNumber(user.phone);
+    return () => {
+      
+    }
+  }, [])
+  
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -83,7 +97,7 @@ const UserProfile = () => {
             <Form.Group controlId="birthdate">
               <Form.Label>{t('userProfile.birthdateLabel')}</Form.Label>
               <Form.Control
-                type="text"
+                type="number"
                 value={birthdate}
                 onChange={(e) => setBirthdate(e.target.value)}
               />
