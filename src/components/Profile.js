@@ -33,14 +33,14 @@ const UserProfile = () => {
     // Here you can handle the form data, e.g., send it to the server
 
     // Clear the form
-    setNick('');
+/*     setNick('');
     setFirstName('');
     setLastName('');
     setGender('');
     setPhoneNumber('');
     setBirthdate('');
     setAddress('');
-    setPostalCode('');
+    setPostalCode(''); */
   };
 
   return (
