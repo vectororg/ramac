@@ -6,8 +6,8 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Profile from '../components/Profile';
-import AddProfilePicture from '../components/AddProfilePicture';
-import ChangePassword from '../components/PasswordChange';
+import AddProfilePicture from '../components/AddProfilePictureComponent';
+import ChangePassword from '../components/PasswordChangeComponent';
 
 const Tili = () => {
   const [loggedIn, setLoggedIn] = useState(true); // Oletetaan, että käyttäjä on kirjautunut sisään

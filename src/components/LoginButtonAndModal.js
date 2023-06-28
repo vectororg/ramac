@@ -42,16 +42,7 @@ function LoginButtonAndModal({ onLogin }) {
       .catch(error => console.error(error));
 
 
-/*       if (response.ok) {
-        console.log('Login successful');
-        onLogin(); // Kutsu onLogin-funktiota kirjautumisen yhteydessä
-        setTimeout(() => {
-          navigate('/tili');
-        }, 500);
-      } else {
-        alert(t('loginFailed'));
-        console.log('Login failed');
-      } */
+
      
   };
   
