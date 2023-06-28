@@ -64,12 +64,18 @@ const Navbar = () => {
       </Nav>
       <ul>
         <LanguageSwitcher />
-        <li className="nav-item">
-          <RegistrationModal />
-        </li>
         {loggedIn ? (
           <li className="nav-item">
-           <LogoutButton onLogout={handleLogout} navigate={navigate} />
+            {/* Rekisteröintinappi ei näy, koska käyttäjä on kirjautunut sisään */}
+          </li>
+        ) : (
+          <li className="nav-item">
+            <RegistrationModal />
+          </li>
+        )}
+        {loggedIn ? (
+          <li className="nav-item">
+            <LogoutButton onLogout={handleLogout} navigate={navigate} />
           </li>
         ) : (
           <li className="nav-item">
