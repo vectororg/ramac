@@ -8,6 +8,7 @@ import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 import LoginButtonAndModal from './LoginButtonAndModal';
 import { useNavigate } from 'react-router-dom';
+import RegistrationModal from './RegisterationModal';
 
 const Navbar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -63,6 +64,9 @@ const Navbar = () => {
       </Nav>
       <ul>
         <LanguageSwitcher />
+        <li className="nav-item">
+          <RegistrationModal />
+        </li>
         {loggedIn ? (
           <li className="nav-item">
            <LogoutButton onLogout={handleLogout} navigate={navigate} />
