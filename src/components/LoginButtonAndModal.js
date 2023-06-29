@@ -12,7 +12,7 @@ function LoginButtonAndModal({ onLogin }) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ function LoginButtonAndModal({ onLogin }) {
       .then(data => {
         localStorage.setItem("user", JSON.stringify(data))
         localStorage.setItem("authorization", base64LoginString)
-
+        setIsLoggedIn(true);
         console.log('Login successful');
         onLogin(); // Kutsu onLogin-funktiota kirjautumisen yhteydessä
         setTimeout(() => {
