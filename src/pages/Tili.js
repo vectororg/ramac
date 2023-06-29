@@ -8,10 +8,13 @@ import Header from '../components/Header';
 import Profile from '../components/Profile';
 import AddProfilePicture from '../components/AddProfilePictureComponent';
 import ChangePassword from '../components/PasswordChangeComponent';
+import { useAuth } from '../contexts/AuthProvider';
+import ProfileImage from '../components/ProfileImage';
 
 const Tili = () => {
   const [loggedIn, setLoggedIn] = useState(true); // Oletetaan, että käyttäjä on kirjautunut sisään
   const navigate = useNavigate();
+  const auth = useAuth();
 
   const handleLogout = () => {
     setLoggedIn(false);
@@ -33,6 +36,7 @@ const Tili = () => {
       <Container>
         <Row className="my-4 gx-1">
           <Col xs={12} md={4} className="gx-2">
+            <ProfileImage nick={auth.user.nick} />
             <AddProfilePicture />
           </Col>
           <Col xs={12} md={8} className="pb-4 mb-4">

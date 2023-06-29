@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useRef } from 'react';
 
 export default function ProfileImage({ nick }) {
-  const [imageBase64, setImageBase64] = useState('');
+  //const [imageBase64, setImageBase64] = useState();
+  const imgRef = useRef()
 
   useEffect(() => {
     fetch('https://nr.vector.fi:1891/ramac/rest/v1/user/image?nick='+ nick, {
@@ -12,10 +14,13 @@ export default function ProfileImage({ nick }) {
           const reader = new FileReader();
           reader.readAsDataURL(data); 
 
-          reader.onloadend = function() {
+          reader.onloadend = () => {
             const base64data = reader.result;                
-            setImageBase64(base64data);
+            //setImageBase64(base64data);
+            imgRef.current.src = base64data;
           }
+
+          
           
         })
         .catch(error => console.error(error));
@@ -27,7 +32,7 @@ export default function ProfileImage({ nick }) {
 
   return (
     <div>
-      <img src={imageBase64}/>
+      <img ref={imgRef}/>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { useAuth } from '../contexts/AuthProvider';
 
 const UserProfile = () => {
   const { t } = useTranslation();
@@ -13,15 +14,20 @@ const UserProfile = () => {
   const [address, setAddress] = useState('');
   const [postalCode, setPostalCode] = useState('');
 
-  
+  const auth = useAuth();
 
-  useEffect(() => {
-    let user = JSON.parse(localStorage.getItem('user'));
-    
-    setNick(user.nick);
-    setFirstName(user.nick);
-    setLastName(user.lastNames)
-    setPhoneNumber(user.phone);
+  useEffect(() => {        
+    const getUserData = () => {
+      if (auth.signedIn) {
+        setNick(auth.user.nick);
+        setFirstName(auth.user.firstnames);
+        setLastName(auth.user.lastname)
+        setPhoneNumber(auth.user.phone); 
+      }
+    }
+
+    getUserData();
+
     return () => {
       
     }
@@ -30,17 +36,6 @@ const UserProfile = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    // Here you can handle the form data, e.g., send it to the server
-
-    // Clear the form
-/*     setNick('');
-    setFirstName('');
-    setLastName('');
-    setGender('');
-    setPhoneNumber('');
-    setBirthdate('');
-    setAddress('');
-    setPostalCode(''); */
   };
 
   return (
@@ -97,7 +92,7 @@ const UserProfile = () => {
             <Form.Group controlId="birthdate">
               <Form.Label>{t('userProfile.birthdateLabel')}</Form.Label>
               <Form.Control
-                type="number"
+                type="text"
                 value={birthdate}
                 onChange={(e) => setBirthdate(e.target.value)}
               />
