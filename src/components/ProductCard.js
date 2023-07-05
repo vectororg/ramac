@@ -1,139 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Button, Image, Form, Modal } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
+import kivakuva from '../img/kivakuva.webp';
 
-const ProductCard = ({ product, onAddToCart }) => {
-  const [quantity, setQuantity] = useState(0);
-  const [selectedType, setSelectedType] = useState('');
-  const [selectedColor, setSelectedColor] = useState('');
-  const [selectedSize, setSelectedSize] = useState('');
-  const [modalOpen, setModalOpen] = useState(false);
-  const { t } = useTranslation();
+const ProductCard = ({ onAddToCart }) => {
+  const [productData, setProductData] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const handleIncrement = () => {
-    setQuantity(quantity + 1);
-  };
+  useEffect(() => {
+    const fetchProductData = async () => {
+      try {
+        const response = await fetch('https://nr.vector.fi:1891/ramac/rest/v1/products');
+        const data = await response.json();
+        setProductData(data);
+      } catch (error) {
+        console.error('Error fetching product data:', error);
+      }
+    };
 
-  const handleDecrement = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
-    }
-  };
+    fetchProductData();
+  }, []);
 
-  const handleTypeChange = (event) => {
-    setSelectedType(event.target.value);
-  };
-
-  const handleColorChange = (event) => {
-    setSelectedColor(event.target.value);
-  };
-
-  const handleSizeChange = (event) => {
-    setSelectedSize(event.target.value);
-  };
-
-  const openModal = () => {
-    setModalOpen(true);
+  const openModal = (product) => {
+    setSelectedProduct(product);
   };
 
   const closeModal = () => {
-    setModalOpen(false);
+    setSelectedProduct(null);
   };
 
+  if (!productData.length) {
+    return <div>Loading...</div>;
+  }
+  const imageUrl = kivakuva;
   const addToCart = () => {
-    const variant = {
-      type: selectedType,
-      color: selectedColor,
-      size: selectedSize,
-    };
-
-    onAddToCart(product.name, quantity, variant);
-    setQuantity(0);
-    setSelectedType('');
-    setSelectedColor('');
-    setSelectedSize('');
-    closeModal();
+    // Toteuta haluttu toiminnallisuus, esim. tuotteen lisääminen ostoskoriin
   };
 
-  const cardStyle = {
-    margin: '10px',
-    cursor: 'pointer',
-    width: '300px',
-    height: 'auto',
-    textOverflow: 'ellipsis',
-  };
+  const product = productData.find((item) => item.product_name === 'lippu');
 
-  const truncateText = (text, maxLength) => {
-    if (text.length <= maxLength) {
-      return text;
-    }
-    return text.slice(0, maxLength) + '...';
-  };
+  if (!product) {
+    return <div>Product not found</div>;
+  }
 
   return (
     <div>
-      <Card style={cardStyle} onClick={openModal}>
-        <Card.Img variant="top" src={product.image} alt={product.name} />
-        <Card.Body>
-          <Card.Title style={{ fontSize: '16px' }}>{truncateText(product.name, 20)}</Card.Title>
-          <Card.Text style={{ fontSize: '14px' }}>{truncateText(product.description, 300)}</Card.Text>
-        </Card.Body>
-      </Card>
+      <div key={product.product_id} onClick={() => openModal(product)}>
+        <Card>
+          <Card.Body>
+          <Image src={imageUrl} alt={product.name} fluid />
+            <Card.Title>{product.product_name}</Card.Title>
+            <Card.Text>{product.description}</Card.Text>
+            {/* Muut tuotetiedot */}
+          </Card.Body>
+        </Card>
+      </div>
 
-      <Modal show={modalOpen} onHide={closeModal} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>{product.name}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Image src={product.image} alt={product.name} fluid />
-          <p>{product.description}</p>
-
-          <Form>
-            <Form.Group controlId="typeSelect">
-              <Form.Label>Type</Form.Label>
-              <Form.Control as="select" value={selectedType} onChange={handleTypeChange}>
-                <option value="">Choose type</option>
-                <option value="Type 1">Type 1</option>
-                <option value="Type 2">Type 2</option>
-                <option value="Type 3">Type 3</option>
-              </Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId="colorSelect">
-              <Form.Label>Color</Form.Label>
-              <Form.Control as="select" value={selectedColor} onChange={handleColorChange}>
-                <option value="">Choose color</option>
-                <option value="Red">Red</option>
-                <option value="Blue">Blue</option>
-                <option value="Green">Green</option>
-              </Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId="sizeSelect">
-              <Form.Label>Size</Form.Label>
-              <Form.Control as="select" value={selectedSize} onChange={handleSizeChange}>
-                <option value="">Choose size</option>
-                <option value="Small">Small</option>
-                <option value="Medium">Medium</option>
-                <option value="Large">Large</option>
-              </Form.Control>
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Button className="decrement" variant="outline-dark" onClick={handleDecrement}>
-              -
-            </Button>
-            <span style={{ marginLeft: '8px', marginRight: '8px', fontSize: '14px' }}>{quantity}</span>
-            <Button className="increment" variant="outline-dark" onClick={handleIncrement}>
-              +
-            </Button>
-            <Button className="add-to-cart" variant="dark" onClick={addToCart}>
-              {t('productCard.addToCartButton')}
-            </Button>
-          </div>
-        </Modal.Footer>
+      <Modal show={selectedProduct !== null} onHide={closeModal} centered>
+        {selectedProduct && (
+          <>
+            <Modal.Header closeButton>
+              <Modal.Title>{selectedProduct.product_name}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+          <Image src={imageUrl} alt={product.name} fluid />
+              <p>{selectedProduct.description}</p>
+              {/* Modaalin sisältö */}
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={closeModal}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={addToCart}>
+                Add to Cart
+              </Button>
+            </Modal.Footer>
+          </>
+        )}
       </Modal>
     </div>
   );

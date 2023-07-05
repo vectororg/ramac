@@ -16,12 +16,7 @@ const Tili = () => {
   const navigate = useNavigate();
   const auth = useAuth();
 
-  const handleLogout = () => {
-    setLoggedIn(false);
-    // Lisää uloskirjautumislogiikka tähän
-    localStorage.removeItem('loggedIn');
-    navigate('/'); // Ohjaa käyttäjä takaisin Etusivulle
-  };
+
 
   // Jos käyttäjä ei ole kirjautunut sisään, ohjataan takaisin Etusivulle
 /*   if (!loggedIn) {
