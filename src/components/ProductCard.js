@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Button, Image, Form, Modal } from 'react-bootstrap';
+import { Card, Button, Image, Modal, Row, Col } from 'react-bootstrap';
 import kivakuva from '../img/kivakuva.webp';
 
 const ProductCard = ({ onAddToCart }) => {
@@ -28,32 +28,42 @@ const ProductCard = ({ onAddToCart }) => {
     setSelectedProduct(null);
   };
 
-  if (!productData.length) {
-    return <div>Loading...</div>;
-  }
-  const imageUrl = kivakuva;
   const addToCart = () => {
     // Toteuta haluttu toiminnallisuus, esim. tuotteen lisääminen ostoskoriin
   };
 
-  const product = productData.find((item) => item.product_name === 'lippu');
+  const imageUrl = kivakuva;
 
-  if (!product) {
-    return <div>Product not found</div>;
-  }
-
-  return (
-    <div>
-      <div key={product.product_id} onClick={() => openModal(product)}>
-        <Card>
+  const renderProductCards = () => {
+    return productData.map((product) => (
+      <Col key={product.product_id} sm={12} md={4} onClick={() => openModal(product)}>
+        <Card className="shadow-sm mb-4" style={{ cursor: 'pointer' }}>
           <Card.Body>
-          <Image src={imageUrl} alt={product.name} fluid />
+            <Image src={imageUrl} alt={product.product_name} fluid />
             <Card.Title>{product.product_name}</Card.Title>
             <Card.Text>{product.description}</Card.Text>
             {/* Muut tuotetiedot */}
           </Card.Body>
         </Card>
-      </div>
+      </Col>
+    ));
+  };
+
+  const chunkProductCards = (arr, size) => {
+    const chunkedArr = [];
+    for (let i = 0; i < arr.length; i += size) {
+      chunkedArr.push(arr.slice(i, i + size));
+    }
+    return chunkedArr;
+  };
+
+  const chunkedProductCards = chunkProductCards(renderProductCards(), 3);
+
+  return (
+    <div>
+      {chunkedProductCards.map((chunk, index) => (
+        <Row key={index}>{chunk}</Row>
+      ))}
 
       <Modal show={selectedProduct !== null} onHide={closeModal} centered>
         {selectedProduct && (
@@ -62,7 +72,7 @@ const ProductCard = ({ onAddToCart }) => {
               <Modal.Title>{selectedProduct.product_name}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-          <Image src={imageUrl} alt={product.name} fluid />
+              <Image src={imageUrl} alt={selectedProduct.product_name} fluid />
               <p>{selectedProduct.description}</p>
               {/* Modaalin sisältö */}
             </Modal.Body>
