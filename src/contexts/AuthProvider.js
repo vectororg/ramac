@@ -30,7 +30,6 @@ export const AuthProvider = ({ children }) => {
       })
       .then(response => response.json())
       .then(data => {
-        localStorage.setItem("user", JSON.stringify(data))
         setUser(data);
         setSignedIn(true);
         setPending(false);
@@ -48,7 +47,8 @@ export const AuthProvider = ({ children }) => {
     setSignedIn(false)
   }
   
-  const login = () => {
+  const login = (data) => {
+    setUser(data);
     setSignedIn(true)
   }
 

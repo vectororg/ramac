@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthProvider';
 
 function LoginButtonAndModal({ onLogin }) {
   const [show, setShow] = useState(false);
@@ -15,7 +16,7 @@ function LoginButtonAndModal({ onLogin }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { t } = useTranslation();
   const navigate = useNavigate();
-
+const auth = useAuth()
   const handleFormSubmit = async (event) => {
     event.preventDefault();
       const loginString = `${formData.name}:${formData.password}`;
@@ -29,7 +30,7 @@ function LoginButtonAndModal({ onLogin }) {
       })
       .then(response => response.json())
       .then(data => {
-        localStorage.setItem("user", JSON.stringify(data))
+        auth.login(data)
         localStorage.setItem("authorization", base64LoginString)
         setIsLoggedIn(true);
         console.log('Login successful');

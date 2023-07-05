@@ -1,7 +1,8 @@
+// Ostoskori.js
 import React, { useState } from 'react';
 import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 
-const Ostoskori = () => {
+const Ostoskori = ({ lisaaOstoskoriin }) => {
   const [ostoskori, setOstoskori] = useState([]);
 
   const lisaaTuote = (nimi, hinta) => {
@@ -32,7 +33,7 @@ const Ostoskori = () => {
       </Row>
       <Row>
         <Col>
-          <button onClick={() => lisaaTuote('Tuote 1', 19.99)}>Lisää tuote</button>
+          <button onClick={() => lisaaOstoskoriin('Tuote 1', 19.99)}>Lisää tuote</button>
         </Col>
       </Row>
     </Container>
