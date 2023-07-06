@@ -8,7 +8,6 @@ const UserProfile = () => {
   const [nick, setNick] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [gender, setGender] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [address, setAddress] = useState('');
@@ -68,19 +67,8 @@ const UserProfile = () => {
                 onChange={(e) => setLastName(e.target.value)}
               />
             </Form.Group>
-            <Form.Group controlId="gender">
-              <Form.Label>{t('userProfile.genderLabel')}</Form.Label>
-              <Form.Control
-                as="select"
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-              >
-                <option value="">{t('userProfile.genderPlaceholder')}</option>
-                <option value="male">{t('userProfile.genderMale')}</option>
-                <option value="female">{t('userProfile.genderFemale')}</option>
-                <option value="other">{t('userProfile.genderOther')}</option>
-              </Form.Control>
-            </Form.Group>
+            
+            
             <Form.Group controlId="phoneNumber">
               <Form.Label>{t('userProfile.phoneNumberLabel')}</Form.Label>
               <Form.Control
