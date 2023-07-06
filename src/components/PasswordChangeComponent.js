@@ -7,9 +7,17 @@ const ChangePassword = () => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordLength, setPasswordLength] = useState(0);
+  const [passwordError, setPasswordError] = useState('');
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
+    // Tarkista salasanan pituus
+    if (newPassword.length < 6) {
+      setPasswordError('Salasanan tulee olla vähintään kuusi merkkiä pitkä.');
+      return;
+    }
 
     // Tässä voit käsitellä lomakkeen tiedot, esim. lähettää ne palvelimelle
 
@@ -17,6 +25,8 @@ const ChangePassword = () => {
     setCurrentPassword('');
     setNewPassword('');
     setConfirmPassword('');
+    setPasswordLength(0);
+    setPasswordError('');
   };
 
   return (
@@ -38,8 +48,14 @@ const ChangePassword = () => {
               <Form.Control
                 type="password"
                 value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
+                onChange={(e) => {
+                  setNewPassword(e.target.value);
+                  setPasswordLength(e.target.value.length);
+                }}
               />
+              {passwordLength > 0 && passwordLength < 6 && (
+                <Form.Text className="text-danger">{passwordError}</Form.Text>
+              )}
             </Form.Group>
             <Form.Group controlId="confirmPassword">
               <Form.Label>{t('changePassword.confirmPasswordLabel')}</Form.Label>

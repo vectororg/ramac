@@ -20,6 +20,8 @@ const ProductCard = ({ onAddToCart }) => {
     fetchProductData();
   }, []);
 
+
+
   const openModal = (product) => {
     setSelectedProduct(product);
   };
