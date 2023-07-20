@@ -1,44 +1,61 @@
-import React from 'react';
-import '../App.css';
-import { useTranslation } from 'react-i18next';
+import React, { useState, useEffect } from 'react';
+import ShoppingCart from '../components/ShoppingCart';
+import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Header from '../components/Header';
-import Basket from '../components/Basket';
-import Tilaukseni from '../components/Tilaukseni';
 
+const OrderPage = () => {
+  const [cartItems, setCartItems] = useState([]);
 
+  useEffect(() => {
+    // Haetaan tuotteiden tiedot localStoragesta
+    const storedCartItems = localStorage.getItem('cartItems');
+    if (storedCartItems) {
+      setCartItems(JSON.parse(storedCartItems));
+    }
+  }, []);
 
-const Order = () => {
-    const { t } = useTranslation();
-  
-    const tilaukset = [
-      {
-        tilausId: 1,
-        paivamaara: "2023-05-25",
-        info: "Tilaus 1",
-        hinta: 19.99,
-        laskuPdfUrl: "https://example.com/lasku1.pdf",
-      },
-      {
-        tilausId: 2,
-        paivamaara: "2023-05-26",
-        info: "Tilaus 2",
-        hinta: 29.99,
-        laskuPdfUrl: "https://example.com/lasku2.pdf",
-      },
-      // Lisää tarvittavat tilaukset tähän
-    ];
-  
-    return (
-      <div>
-        <Header />
-        <Navbar />
-  
-        <Basket />
-        <Tilaukseni tilaukset={tilaukset} />
-        <Footer />
-      </div>
-    );
+  const handleCheckout = () => {
+    // Tähän voit toteuttaa tilauksen käsittelyn
+    // Tässä esimerkissä vain merkitään checkoutDone todeksi ja tyhjennetään ostoskori
+    localStorage.removeItem('cartItems'); // Poistetaan tuotteiden tiedot localStoragesta
+    setCartItems([]); // Tyhjennetään cartItems-tila
   };
-export default Order;
+
+  const handleRemoveItem = (productId) => {
+    // Tässä voit toteuttaa tuotteen poiston logiikan
+    // Esimerkiksi poistaa tuotteen cartItems-tilasta ja päivittää localStoragea
+    const updatedCartItems = cartItems.filter((item) => item.product_id !== productId);
+    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+    setCartItems(updatedCartItems);
+  };
+
+  const handleUpdateQuantity = (productId, newQuantity) => {
+    // Päivitä kappalemäärä välimuistissa
+    const updatedCartItems = cartItems.map((item) =>
+      item.product_id === productId ? { ...item, quantity: newQuantity } : item
+    );
+    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+    setCartItems(updatedCartItems);
+  };
+
+  return (
+    <div>
+      <Header />
+      <Navbar />
+      {cartItems.length > 0 ? (
+        <ShoppingCart
+          cartItems={cartItems}
+          onCheckout={handleCheckout}
+          onRemoveItem={handleRemoveItem}
+          onUpdateQuantity={handleUpdateQuantity} // Lisää onUpdateQuantity propseihin
+        />
+      ) : (
+        <p>Your shopping cart is empty.</p>
+      )}
+      <Footer />
+    </div>
+  );
+};
+
+export default OrderPage;

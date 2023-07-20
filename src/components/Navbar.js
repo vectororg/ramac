@@ -4,6 +4,7 @@ import LanguageSwitcher from './LanguageSwitcher';
 import LogoutButton from '../components/LogoutButton';
 import logo from '../img/logo.png';
 import cart from '../img/cart.png';
+
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 import LoginButtonAndModal from './LoginButtonAndModal';
@@ -34,6 +35,12 @@ const Navbar = () => {
     // Poista tallennettu kirjautumistila
     localStorage.removeItem('loggedIn');
     navigate('/'); // Ohjaa käyttäjä takaisin Etusivulle
+  };
+
+  const getCartItemCount = () => {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const totalCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+    return totalCount;
   };
 
   return (
@@ -85,6 +92,8 @@ const Navbar = () => {
         <li className="cart">
           <Link to="/order">
             <img src={cart} alt="Cart" />
+            {/* Näytetään ostoskorissa olevien tuotteiden määrä cart-logon päällä */}
+            {getCartItemCount() > 0 && <span className="cart-item-count">{getCartItemCount()}</span>}
           </Link>
         </li>
       </ul>

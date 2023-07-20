@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Card, Button, Image, Modal, Row, Col } from 'react-bootstrap';
 import kivakuva from '../img/kivakuva.webp';
 
-const ProductCard = ({ onAddToCart }) => {
+const ProductCard = () => {
   const [productData, setProductData] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1); // Lisätty tila määrälle
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -20,18 +21,36 @@ const ProductCard = ({ onAddToCart }) => {
     fetchProductData();
   }, []);
 
-
-
   const openModal = (product) => {
     setSelectedProduct(product);
+    setQuantity(1); // Alustetaan määrä yhdellä aina, kun avataan modal
   };
 
   const closeModal = () => {
     setSelectedProduct(null);
   };
 
+  const handleUpdateQuantity = (change) => {
+    // Vähennetään määrää yhdellä, mutta varmistetaan, ettei määrä mene negatiiviseksi
+    setQuantity((prevQuantity) => Math.max(prevQuantity + change, 1));
+  };
+
   const addToCart = () => {
-    // Toteuta haluttu toiminnallisuus, esim. tuotteen lisääminen ostoskoriin
+    // Tarkistetaan, onko tuote jo lisätty välimuistiin
+    const existingProducts = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const existingProduct = existingProducts.find((product) => product.product_id === selectedProduct.product_id);
+
+    if (existingProduct) {
+      // Jos tuote on jo lisätty, päivitetään sen määrää
+      existingProduct.quantity += quantity;
+    } else {
+      // Jos tuotetta ei ole vielä lisätty, lisätään se välimuistiin
+      const productWithQuantity = { ...selectedProduct, quantity };
+      existingProducts.push(productWithQuantity);
+    }
+
+    localStorage.setItem('cartItems', JSON.stringify(existingProducts));
+    closeModal();
   };
 
   const imageUrl = kivakuva;
@@ -44,7 +63,7 @@ const ProductCard = ({ onAddToCart }) => {
             <Image src={imageUrl} alt={product.product_name} fluid />
             <Card.Title>{product.product_name}</Card.Title>
             <Card.Text>{product.description}</Card.Text>
-            {/* Muut tuotetiedot */}
+            <Card.Text>{product.price}€</Card.Text>
           </Card.Body>
         </Card>
       </Col>
@@ -76,12 +95,23 @@ const ProductCard = ({ onAddToCart }) => {
             <Modal.Body>
               <Image src={imageUrl} alt={selectedProduct.product_name} fluid />
               <p>{selectedProduct.description}</p>
-              {/* Modaalin sisältö */}
+              <p>{selectedProduct.price}€</p>
+              <div>
+
+              </div>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={closeModal}>
                 Close
               </Button>
+                {/* Lisätty määrän säätönapulat */}
+                <Button variant="secondary" onClick={() => handleUpdateQuantity(-1)}>
+                  -
+                </Button>
+                <span>{quantity}</span>
+                <Button variant="secondary" onClick={() => handleUpdateQuantity(1)}>
+                  +
+                </Button>
               <Button variant="primary" onClick={addToCart}>
                 Add to Cart
               </Button>

@@ -149,3 +149,22 @@ footer .container {
   border: 1px solid black;
   padding: 5px;
 }
+.cart {
+  position: relative;
+}
+
+.cart-item-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding-left: 3px;
+  padding-right: 4px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 13px;
+  /* Aseta z-indeksi, jotta numero on päällä kuvan */
+  z-index: 1;
+}

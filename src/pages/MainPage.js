@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 import { useTranslation } from 'react-i18next';
 import Navbar from '../components/Navbar';
@@ -6,11 +6,25 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
 import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const MainPage = () => {
   const { t } = useTranslation();
+  const [cartItems, setCartItems] = useState([]);
 
-
+  const handleAddToCart = (item) => {
+    // Tarkistetaan, onko tuote jo lisätty ostoskoriin
+    const existingItemIndex = cartItems.findIndex((cartItem) => cartItem.product_id === item.product_id);
+    if (existingItemIndex !== -1) {
+      // Jos tuote on jo lisätty ostoskoriin, päivitetään sen määrää
+      const updatedCartItems = [...cartItems];
+      updatedCartItems[existingItemIndex].quantity += 1;
+      setCartItems(updatedCartItems);
+    } else {
+      // Jos tuotetta ei ole vielä lisätty ostoskoriin, lisätään se sinne
+      setCartItems([...cartItems, { ...item, quantity: 1 }]);
+    }
+  };
 
   return (
     <div>
@@ -26,12 +40,12 @@ const MainPage = () => {
 
         <Container>
           <Row>
-            
-              <ProductCard />
-            
-          
+            <ProductCard cartItems={cartItems} onAddToCart={handleAddToCart} />
           </Row>
         </Container>
+
+        {/* Link to OrderPage with cartItems */}
+        <Link to={{ pathname: '/order', state: { cartItems: cartItems } }}>Go to Order Page</Link>
       </div>
 
       <Footer />

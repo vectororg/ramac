@@ -3,7 +3,6 @@
 import MainPage from './pages/MainPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import TestPage from './pages/TestPage';
-import LogoutButton from './components/LogoutButton';
 import Hinnat from './pages/Hinnat';
 import Info from './pages/Info';
 import Tili from './pages/Tili';
@@ -16,13 +15,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<MainPage />} />
-        <Route path='computerplaces' element={<ComputerPlaces />} />
-        <Route path='order' element={<Order />} />
-        <Route path='mainpage' element={<MainPage />} />
-        <Route path='hinnat' element={<Hinnat />} />
-        <Route path='info' element={<Info />} />
-        <Route path='tili' element={<Tili />} />
-        <Route path='test' element={<TestPage />} />
+        <Route path='/computerplaces' element={<ComputerPlaces />} />
+        <Route path='/order' element={<Order />} />
+        <Route path='/mainpage' element={<MainPage />} />
+        <Route path='/hinnat' element={<Hinnat />} />
+        <Route path='/info' element={<Info />} />
+        <Route path='/tili' element={<Tili />} />
+        <Route path='/test' element={<TestPage />} />
       </Routes>
     </BrowserRouter>
     
