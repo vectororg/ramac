@@ -5,8 +5,8 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Container, Row} from 'react-bootstrap';
+
 
 const MainPage = () => {
   const { t } = useTranslation();
@@ -44,8 +44,7 @@ const MainPage = () => {
           </Row>
         </Container>
 
-        {/* Link to OrderPage with cartItems */}
-        <Link to={{ pathname: '/order', state: { cartItems: cartItems } }}>Go to Order Page</Link>
+       
       </div>
 
       <Footer />

@@ -6,6 +6,7 @@ const ProductCard = () => {
   const [productData, setProductData] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [quantity, setQuantity] = useState(1); // Lisätty tila määrälle
+  const [cartItemCount, setCartItemCount] = useState(0); // Lisätty tila ostoskorin tuotteiden määrälle
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -20,6 +21,12 @@ const ProductCard = () => {
 
     fetchProductData();
   }, []);
+
+  useEffect(() => {
+    // Päivitä ostoskorin tuotteiden määrä aina, kun cartItems-taulukko muuttuu
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    setCartItemCount(cartItems.reduce((total, item) => total + item.quantity, 0));
+  }, [selectedProduct]); // Lisätty selectedProduct riippuvuutena, jotta päivitys tapahtuu aina kun tuote lisätään ostoskoriin
 
   const openModal = (product) => {
     setSelectedProduct(product);
