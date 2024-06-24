@@ -1,4 +1,4 @@
 # ramac
 vectoraman uusi verkkokauppa
 
-15.5 alotettiin tämä projekti
+15.5.2023 alotettiin tämä projekti
