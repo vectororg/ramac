@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-
 const AddProfilePicture = () => {
   const [imageSrc, setImageSrc] = useState(null);
   const [isPreviewing, setIsPreviewing] = useState(false);
@@ -87,26 +86,24 @@ const AddProfilePicture = () => {
     setIsImageSaved(false);
   };
 
-  const saveImage = () => {
-    // Tässä voit toteuttaa logiikan tallentaaksesi kuvan tietokantaan
-    // esimerkiksi lähettämällä sen palvelimelle HTTP-pyynnön avulla.
-    // Voit käyttää esimerkiksi Axios-kirjastoa.
-
-    // Esimerkki Axios-pyynnöstä:
-    // axios.post('/tallennuspolku', { imageSrc })
-    //   .then(response => {
-    //     // Käsittely tallennuksen onnistuessa
-    //     console.log('Kuva tallennettu tietokantaan');
-    //     setIsImageSaved(true);
-    //   })
-    //   .catch(error => {
-    //     // Käsittely tallennuksen epäonnistuessa
-    //     console.error('Virhe tallentaessa kuvaa:', error);
-    //   });
-
-    // Käytetään tässä vaiheessa setIsImageSaved(true) simuloidaksemme tallennusprosessia
-    setIsImageSaved(true);
-    console.log('Kuva tallennettu tietokantaan');
+  const saveImage = async () => {
+    try {
+      const response = await fetch('https://nr.vector.fi:1891/ramac/rest/v1/user/image', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ image: imageSrc })
+      });
+      if (response.ok) {
+        setIsImageSaved(true);
+        console.log('Kuva tallennettu tietokantaan');
+      } else {
+        console.error('Virhe kuvan tallentamisessa');
+      }
+    } catch (error) {
+      console.error('Virhe kuvan tallentamisessa:', error);
+    }
   };
 
   return (

@@ -37,12 +37,12 @@ const RegistrationModal = () => {
         body: JSON.stringify({
           "birthyear": 1987,
           "phone": "0461234568",
-          "lastname" : "TestUserLastname",
+          "lastname" : "TestUserLastname2",
           password,
-          "firstnames":"TestUserFirstname",
+          "firstnames":"TestUserFirstname2",
           login,
           "zip" : "12355",
-          "nick" : "TestUser",
+          "nick" : "TestUser2",
           email,
           "address" : "Example Street 1",
           "city":"Example Town"
